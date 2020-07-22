@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -20,7 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
     private CheckBox checkVerde, checkBranco, checkVermelho;
 
+    //RadioButton
     private RadioButton radioMasculino, radioFeminino;
+    private RadioGroup opcaoSexo;
 
 
     @Override
@@ -37,15 +40,32 @@ public class MainActivity extends AppCompatActivity {
         checkBranco = findViewById(R.id.checkBranco);
         checkVermelho = findViewById(R.id.checkVermelho);
 
+        //RadioButton
         radioMasculino = findViewById(R.id.radioMasculino);
         radioFeminino = findViewById(R.id.radioFeminino);
+        //RadioGroup
+        opcaoSexo = findViewById(R.id.radioGroupSexo);
 
+        radioButton();
 
 
     }
 
     public void radioButton(){
-        String texto = "";
+
+        opcaoSexo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if ( checkedId == R.id.radioMasculino){
+                    textoResultado.setText( "masculino");
+                }else if ( checkedId == R.id.radioFeminino){
+                    textoResultado.setText("feminino");
+                }
+            }
+        });
+
+        /*String texto = "";
         if( radioMasculino.isChecked()){
             String opcao = radioMasculino.getText().toString();
             texto = opcao + " selecionado";
@@ -55,6 +75,8 @@ public class MainActivity extends AppCompatActivity {
             texto = opcao + " selecionado";
         }
         textoResultado.setText(texto);
+
+         */
     }
 
 
@@ -78,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void enviar(View view){
-            radioButton();
+        //radioButton();
         //checkbox();
         /*
         String nome = campoNome.getText().toString();
